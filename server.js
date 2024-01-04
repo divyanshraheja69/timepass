@@ -4,13 +4,14 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 dotenv.config({ path: './config.env' });
 require('./conn/db')
-const authRoutes = require('./routes/authRoutes').default
+const authRoutes = require('./routes/authRoutes')
 
 
 
 const app = express();
+app.use(express.json());
 
-app.use("./api/v1/auth", authRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 app.get("/", (req, res) => {
     res.send("<h1>Welcome To Ecommerce App</h1>");
